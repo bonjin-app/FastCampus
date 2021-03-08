@@ -88,10 +88,13 @@
                             <constraint firstItem="7Y3-YN-Sag" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vAB-ky-ntG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="7Y3-YN-Sag" id="wkj-DL-TNh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="220" y="133"/>
+            <point key="canvasLocation" x="230" y="112"/>
         </scene>
     </scenes>
     <resources>

@@ -2,8 +2,8 @@
 //  Extension+AVPlayerItem.swift
 //  AppleMusicStApp
 //
-//  Created by GIGAS on 2020/01/12.
-//  Copyright © 2020 GIGAS. All rights reserved.
+//  Created by GIGAS on 2021/03/08.
+//  Copyright © 2021 GIGAS. All rights reserved.
 //
 
 import AVFoundation
