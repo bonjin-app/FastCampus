@@ -104,7 +104,7 @@
 		3ED7F57325F614290076C9EE = {
 			isa = PBXGroup;
 			children = (
-				3ED7F57E25F614290076C9EE /* AppleMusic1 */,
+				3ED7F57E25F614290076C9EE /* AppleMusic */,
 				3ED7F57D25F614290076C9EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,7 +117,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3ED7F57E25F614290076C9EE /* AppleMusic1 */ = {
+		3ED7F57E25F614290076C9EE /* AppleMusic */ = {
 			isa = PBXGroup;
 			children = (
 				3ED7F59825F614630076C9EE /* Home */,
@@ -132,7 +132,7 @@
 				3ED7F58A25F6142B0076C9EE /* LaunchScreen.storyboard */,
 				3ED7F58D25F6142B0076C9EE /* Info.plist */,
 			);
-			path = AppleMusic1;
+			path = AppleMusic;
 			sourceTree = "<group>";
 		};
 		3ED7F59425F614630076C9EE /* Player */ = {
