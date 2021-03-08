@@ -24,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="sUJ-38-KUm">
-                                <rect key="frame" x="18" y="647" width="378" height="31"/>
+                                <rect key="frame" x="18" y="697" width="378" height="31"/>
                                 <connections>
                                     <action selector="beginDrag:" destination="mND-BP-7fP" eventType="editingDidBegin" id="Clu-Oh-puJ"/>
                                     <action selector="endDrag:" destination="mND-BP-7fP" eventType="editingDidEnd" id="kdn-Io-etF"/>
@@ -32,13 +32,13 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gb-zS-PWU">
-                                <rect key="frame" x="20" y="682" width="39" height="17"/>
+                                <rect key="frame" x="20" y="732" width="39" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LA3-MD-GmF">
-                                <rect key="frame" x="355" y="682" width="39" height="17"/>
+                                <rect key="frame" x="355" y="732" width="39" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -85,7 +85,7 @@
                             <constraint firstItem="99H-cF-MlY" firstAttribute="bottom" secondItem="Gi4-5e-bDZ" secondAttribute="bottom" constant="30" id="iK3-k3-0WH"/>
                             <constraint firstItem="sUJ-38-KUm" firstAttribute="leading" secondItem="99H-cF-MlY" secondAttribute="leading" constant="20" id="ohK-6b-MJM"/>
                             <constraint firstItem="LA3-MD-GmF" firstAttribute="top" secondItem="sUJ-38-KUm" secondAttribute="bottom" constant="5" id="q8V-Jg-4Bf"/>
-                            <constraint firstItem="sUJ-38-KUm" firstAttribute="bottom" secondItem="Gi4-5e-bDZ" secondAttribute="top" constant="-100" id="ye4-JS-clq"/>
+                            <constraint firstItem="sUJ-38-KUm" firstAttribute="bottom" secondItem="Gi4-5e-bDZ" secondAttribute="top" constant="-50" id="ye4-JS-clq"/>
                             <constraint firstItem="GvQ-Sp-cb4" firstAttribute="centerX" secondItem="9Q1-ui-cpc" secondAttribute="centerX" id="zTZ-ZT-rFw"/>
                         </constraints>
                     </view>
