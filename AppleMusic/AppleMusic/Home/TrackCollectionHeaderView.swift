@@ -2,8 +2,8 @@
 //  TrackCollectionHeaderView.swift
 //  AppleMusicStApp
 //
-//  Created by joonwon lee on 2020/03/15.
-//  Copyright © 2020 com.joonwon. All rights reserved.
+//  Created by GIGAS on 2020/03/15.
+//  Copyright © 2020 GIGAS. All rights reserved.
 //
 
 import UIKit
