@@ -32,7 +32,14 @@ class PlayerViewController: UIViewController {
         
         updatePlayButton()
         updateTime(time: CMTime.zero)
+        
         // TODO: TimeObserver 구현
+        let cmTime = CMTime(seconds: 1, preferredTimescale: 10)
+        timeObserver = simplePlayer.addPeriodicTimeObserver(forInterval: cmTime,
+                                                            queue: DispatchQueue.main,
+                                                            using: { time in
+                                                                self.updateTime(time: time)
+                                                            })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +52,8 @@ class PlayerViewController: UIViewController {
         super.viewWillDisappear(animated)
         // TODO: 뷰나갈때 처리 > 심플플레이어
         
+        simplePlayer.pause()
+        simplePlayer.replaceCurrentItem(with: nil)
     }
     
     @IBAction func beginDrag(_ sender: UISlider) {
@@ -57,11 +66,20 @@ class PlayerViewController: UIViewController {
     
     @IBAction func seek(_ sender: UISlider) {
         // TODO: 시킹 구현
+        guard let currentItem = simplePlayer.currentItem else { return }
+        let position = Double(sender.value) // 0...1 > 0.5
+        let second = position * currentItem.duration.seconds
+        let time = CMTime(seconds: second, preferredTimescale: 100)
+        simplePlayer.seek(to: time)
     }
     
     @IBAction func togglePlayButton(_ sender: UIButton) {
         // TODO: 플레이버튼 토글 구현
-        
+        if simplePlayer.isPlaying {
+            simplePlayer.pause()
+        } else {
+            simplePlayer.play()
+        }
         updatePlayButton()
     }
 }
@@ -69,7 +87,10 @@ class PlayerViewController: UIViewController {
 extension PlayerViewController {
     func updateTrackInfo() {
         // TODO: 트랙 정보 업데이트
-        
+        guard let track = simplePlayer.currentItem?.convertToTrack() else { return }
+        thumbnailImageView.image = track.artwork
+        titleLabel.text = track.title
+        artistLabel.text = track.artist
     }
     
     func updateTintColor() {
@@ -82,13 +103,13 @@ extension PlayerViewController {
         // currentTime label, totalduration label, slider
         
         // TODO: 시간정보 업데이트, 심플플레이어 이용해서 수정
-        currentTimeLabel.text = secondsToString(sec: 0.0)   // 3.1234 >> 00:03
-        totalDurationLabel.text = secondsToString(sec: 0.0)  // 39.2045  >> 00:39
+        currentTimeLabel.text = secondsToString(sec: simplePlayer.currentTime)   // 3.1234 >> 00:03
+        totalDurationLabel.text = secondsToString(sec: simplePlayer.totalDurationTime)  // 39.2045  >> 00:39
         
         if isSeeking == false {
             // 노래 들으면서 시킹하면, 자꾸 슬라이더가 업데이트 됨, 따라서 시킹아닐때마 슬라이더 업데이트하자
             // TODO: 슬라이더 정보 업데이트
-            
+            timeSlider.value = Float(simplePlayer.currentTime/simplePlayer.totalDurationTime)
         }
     }
     
@@ -102,5 +123,15 @@ extension PlayerViewController {
     
     func updatePlayButton() {
         // TODO: 플레이버튼 업데이트 UI작업 > 재생/멈춤
+        if simplePlayer.isPlaying {
+            let configuration = UIImage.SymbolConfiguration(pointSize: 40)
+            let image = UIImage(systemName: "pause.fill", withConfiguration: configuration)
+            playControlButton.setImage(image, for: .normal)
+            
+        } else {
+            let configuration = UIImage.SymbolConfiguration(pointSize: 40)
+            let image = UIImage(systemName: "play.fill", withConfiguration: configuration)
+            playControlButton.setImage(image, for: .normal)
+        }
     }
 }
