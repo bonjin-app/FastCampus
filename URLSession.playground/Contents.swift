@@ -51,6 +51,28 @@ import UIKit
 // - uploadTask
 // - downloadTask
 
+struct Response: Codable {
+    let resultCount: Int
+    let tracks: [Track]
+    
+    enum CodingKeys: String, CodingKey {
+        case resultCount = "resultCount"
+        case tracks = "results"
+    }
+}
+
+struct Track: Codable {
+    let title: String
+    let artistName: String
+    let thumbnailPath: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "trackName"
+        case artistName = "artistName"
+        case thumbnailPath = "artworkUrl30"
+    }
+}
+
 let config = URLSessionConfiguration.default
 let session = URLSession(configuration: config)
 
@@ -80,10 +102,30 @@ let dataTask = session.dataTask(with: requestURL) { (data, response, error) in
     
     let resultString = String(data: resultData, encoding: .utf8)
     
-    print("---> resultData: \(resultString)")
+    // 하고 싶은 욕구 목록
+    // Data -> Track 목록으로 가져오고 싶다. [Track]
+    // Track 오브젝트를 만들어야겠다.
+    // Data에서 struct로 파싱하고 싶다. -> Codable
+    // Json 파일, 데이터 > 오브젝트 (Codable)
+    
+    // 파싱 및 트랙 가져오기
+    do {
+        let decoder = JSONDecoder()
+        let response = try decoder.decode(Response.self, from: resultData)
+        let tracks = response.tracks
+        
+        print("---> tracks: \(tracks.count) -\(tracks.last?.title), \(tracks.last?.thumbnailPath)")
+        
+        
+    } catch {
+        print("---> error: \(error.localizedDescription)")
+    }
+    
+//    print("---> resultData: \(resultString)")
 }
 
 dataTask.resume()
 
 
 //== 3 ==//
+
