@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hwh-sH-bb0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Hwh-sH-bb0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +12,7 @@
         <!--홈-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,7 +37,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="q1c-Wy-aYr"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="tintColor" systemColor="darkTextColor"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                                 <state key="normal" title="재생" image="play.fill" catalog="system">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,7 +126,8 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JZK-7i-gRW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="6vU-nN-qiz"/>
                             <constraint firstItem="Vdn-31-UPo" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="CqC-kr-bLu"/>
@@ -133,7 +135,6 @@
                             <constraint firstItem="JZK-7i-gRW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xud-Wh-dpd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JZK-7i-gRW" secondAttribute="bottom" id="y2I-k0-dih"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="홈" image="house.fill" catalog="system" id="b1d-DE-owd"/>
                     <size key="freeformSize" width="414" height="1200"/>
@@ -145,14 +146,53 @@
         <!--검색-->
         <scene sceneID="igB-t3-4eS">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" id="Lf4-yK-Bdw" customClass="SearchViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="Lf4-yK-Bdw" customClass="SearchViewController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5dE-BT-Tyt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="EyI-Mc-2dG">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mq4-lH-LiG">
+                                <rect key="frame" x="0.0" y="100" width="414" height="713"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sYE-FO-fWd">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="DXv-9n-fiz">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="J2y-Gq-DmG">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="n9k-jk-E7Q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="n9k-jk-E7Q" firstAttribute="bottom" secondItem="Mq4-lH-LiG" secondAttribute="bottom" id="3eL-fU-hUg"/>
+                            <constraint firstItem="EyI-Mc-2dG" firstAttribute="trailing" secondItem="n9k-jk-E7Q" secondAttribute="trailing" id="8Aq-iH-F0K"/>
+                            <constraint firstItem="EyI-Mc-2dG" firstAttribute="leading" secondItem="n9k-jk-E7Q" secondAttribute="leading" id="D3V-az-fWn"/>
+                            <constraint firstItem="Mq4-lH-LiG" firstAttribute="top" secondItem="EyI-Mc-2dG" secondAttribute="bottom" id="DsH-Z0-hKg"/>
+                            <constraint firstItem="Mq4-lH-LiG" firstAttribute="leading" secondItem="n9k-jk-E7Q" secondAttribute="leading" id="GTQ-13-vlR"/>
+                            <constraint firstItem="n9k-jk-E7Q" firstAttribute="trailing" secondItem="Mq4-lH-LiG" secondAttribute="trailing" id="Mh0-Hx-8Zu"/>
+                            <constraint firstItem="EyI-Mc-2dG" firstAttribute="top" secondItem="n9k-jk-E7Q" secondAttribute="top" id="fXe-sT-j1u"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="UWE-ky-SQF"/>
+                    <connections>
+                        <outlet property="resultCollectionView" destination="Mq4-lH-LiG" id="03B-qm-lEG"/>
+                        <outlet property="searchBar" destination="EyI-Mc-2dG" id="ZHA-eB-eM4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9vi-cu-R4q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,7 +201,7 @@
         <!--App Tabbar Controller-->
         <scene sceneID="Cfq-lD-a1M">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Hwh-sH-bb0" customClass="AppTabbarController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Hwh-sH-bb0" customClass="AppTabbarController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OaA-nD-CAc">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -188,8 +228,8 @@
                     <view key="view" contentMode="scaleToFill" id="ce7-Bh-AkS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="cEW-rw-DWC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="공개예정" image="play.rectangle.fill" catalog="system" id="pxU-OE-cdZ"/>
                 </viewController>
@@ -204,8 +244,8 @@
                     <view key="view" contentMode="scaleToFill" id="mS2-jO-iWX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="eam-zt-mx3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="더보기" image="gear" catalog="system" id="1gw-Xy-G2a"/>
                 </viewController>
@@ -220,8 +260,8 @@
                     <view key="view" contentMode="scaleToFill" id="P9C-bK-D6z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="OYX-Ro-fRu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="저장한 콘텐츠 목록" image="square.and.arrow.down.fill" catalog="system" id="o4B-qf-7ZJ"/>
                 </viewController>
@@ -232,7 +272,7 @@
         <!--Recommend List View Controller-->
         <scene sceneID="4xS-pn-Mnp">
             <objects>
-                <viewController id="A4f-sJ-9cG" customClass="RecommendListViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="A4f-sJ-9cG" customClass="RecommendListViewController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K1y-ck-xkw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,7 +295,7 @@
                                     <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendCell" id="mM0-vt-cmR" customClass="RecommendCell" customModule="MyNetflix" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendCell" id="mM0-vt-cmR" customClass="RecommendCell" customModule="Netflix" customModuleProvider="target">
                                         <rect key="frame" x="8" y="0.0" width="120" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ra4-YU-5gj">
@@ -284,7 +324,8 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ahs-JH-KT2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="nSQ-Er-pUX" secondAttribute="trailing" id="Krg-Dd-7Me"/>
                             <constraint firstItem="wH8-cc-0Gh" firstAttribute="leading" secondItem="K1y-ck-xkw" secondAttribute="leading" constant="8" id="N04-8O-RUY"/>
@@ -292,7 +333,6 @@
                             <constraint firstItem="nSQ-Er-pUX" firstAttribute="leading" secondItem="K1y-ck-xkw" secondAttribute="leading" id="dW0-tk-BfT"/>
                             <constraint firstItem="wH8-cc-0Gh" firstAttribute="top" secondItem="K1y-ck-xkw" secondAttribute="top" constant="6" id="rOG-Fg-uG3"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ahs-JH-KT2"/>
                     </view>
                     <connections>
                         <outlet property="sectionTitle" destination="wH8-cc-0Gh" id="96q-jt-20t"/>
@@ -305,7 +345,7 @@
         <!--Recommend List View Controller-->
         <scene sceneID="rPl-tT-EzW">
             <objects>
-                <viewController id="njb-az-ijg" customClass="RecommendListViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="njb-az-ijg" customClass="RecommendListViewController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wc3-Mo-AAQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -328,7 +368,7 @@
                                     <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendCell" id="fXf-ZQ-MSr" customClass="RecommendCell" customModule="MyNetflix" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendCell" id="fXf-ZQ-MSr" customClass="RecommendCell" customModule="Netflix" customModuleProvider="target">
                                         <rect key="frame" x="8" y="0.0" width="120" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Ww-Mu-GsU">
@@ -357,7 +397,8 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1qQ-9M-2RM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="82U-Lo-iEA" secondAttribute="bottom" constant="10" id="Ing-dj-AWw"/>
                             <constraint firstItem="dZn-wh-sKq" firstAttribute="top" secondItem="Wc3-Mo-AAQ" secondAttribute="top" constant="6" id="OjS-yy-aSX"/>
@@ -365,7 +406,6 @@
                             <constraint firstAttribute="trailing" secondItem="82U-Lo-iEA" secondAttribute="trailing" id="dpn-bq-3YZ"/>
                             <constraint firstItem="dZn-wh-sKq" firstAttribute="leading" secondItem="Wc3-Mo-AAQ" secondAttribute="leading" constant="8" id="sJy-Ap-1aw"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1qQ-9M-2RM"/>
                     </view>
                     <connections>
                         <outlet property="sectionTitle" destination="dZn-wh-sKq" id="7pU-lT-tMR"/>
@@ -378,7 +418,7 @@
         <!--Recommend List View Controller-->
         <scene sceneID="RUd-9S-MoI">
             <objects>
-                <viewController id="CL9-RT-0XW" customClass="RecommendListViewController" customModule="MyNetflix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CL9-RT-0XW" customClass="RecommendListViewController" customModule="Netflix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GDN-Zd-djO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -401,7 +441,7 @@
                                     <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendCell" id="DyE-NT-d4d" customClass="RecommendCell" customModule="MyNetflix" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendCell" id="DyE-NT-d4d" customClass="RecommendCell" customModule="Netflix" customModuleProvider="target">
                                         <rect key="frame" x="8" y="0.0" width="120" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QLK-g4-Qhz">
@@ -430,7 +470,8 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="377-In-TtT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="nKi-9R-M9z" firstAttribute="top" secondItem="GDN-Zd-djO" secondAttribute="top" constant="6" id="K6S-lz-snQ"/>
                             <constraint firstItem="nKi-9R-M9z" firstAttribute="leading" secondItem="GDN-Zd-djO" secondAttribute="leading" constant="8" id="YPp-6g-F5j"/>
@@ -438,7 +479,6 @@
                             <constraint firstItem="bK8-YB-h4U" firstAttribute="leading" secondItem="GDN-Zd-djO" secondAttribute="leading" id="feg-Pm-ySn"/>
                             <constraint firstAttribute="bottom" secondItem="bK8-YB-h4U" secondAttribute="bottom" constant="10" id="pKV-kW-sn1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="377-In-TtT"/>
                     </view>
                     <connections>
                         <outlet property="sectionTitle" destination="nKi-9R-M9z" id="2di-sd-IJr"/>
@@ -459,5 +499,11 @@
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
