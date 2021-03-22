@@ -7,17 +7,62 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultCollectionView: UICollectionView!
     
+    var movies: [Movie] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         searchBar.delegate = self
     }
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ResultCell", for: indexPath) as? ResultCell else { return UICollectionViewCell() }
+        
+        let movie = movies[indexPath.row]
+        // imagePath -> image
+        // 외부 코드 가져다 쓰기
+        // SPM, Cocoa Pod, Carthage
+//        cell.movieThumbnail.load(urlString: movie.thumbnailPath)
+        
+        let url = URL(string: movie.thumbnailPath)
+        cell.movieThumbnail.kf.setImage(with: url)
+        
+        return cell
+    }
+}
+
+extension SearchViewController: UICollectionViewDataSource {
+    
+}
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let margin: CGFloat = 8
+        let itemSpacing: CGFloat = 10
+        
+        let width = (collectionView.bounds.width - margin*2 - itemSpacing*2) / 3
+        let height = width * 10 / 7
+        
+        return CGSize(width: width, height: height)
+    }
+}
+
+class ResultCell: UICollectionViewCell {
+    @IBOutlet weak var movieThumbnail: UIImageView!
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -36,8 +81,30 @@ extension SearchViewController: UISearchBarDelegate {
               !searchTerm.isEmpty else { return }
         
         SearchAPI.search(searchTerm) { (movies) in
-            
+            DispatchQueue.main.async {
+                self.movies = movies
+                self.resultCollectionView.reloadData()
+            }
             print("---> movies: \(movies.count)")
+        }
+    }
+}
+
+extension UIImageView {
+    
+    // Image Url Load
+    func load(urlString: String) {
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
         }
     }
 }
