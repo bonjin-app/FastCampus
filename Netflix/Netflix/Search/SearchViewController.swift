@@ -103,7 +103,6 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension UIImageView {
-    
     // Image Url Load
     func load(urlString: String) {
         guard let url = URL(string: urlString) else {
